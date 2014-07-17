@@ -21,7 +21,7 @@ function facebook_connect_get_fbdata() {
 	if($fbuser) {
 		$fbData['loginUrl']='';
 	} else {
-		$fbData['loginUrl'] = $facebook->getLoginUrl(array('canvas' => 1, 'fbconnect' => 0, 'scope'=> 'user_status, publish_stream, email'));
+		$fbData['loginUrl'] = $facebook->getLoginUrl(array('canvas' => 1, 'fbconnect' => 0, 'scope'=> 'public_profile, user_friends, user_likes, user_status, publish_stream'));
 	}
 	return $fbData;
 }
