@@ -19,6 +19,15 @@ elgg_register_menu_item('page', array(
 'context' => 'friends'
 ));
 
+elgg_register_menu_item('page', array(
+'name' => 'facebook_likes',
+'text' => elgg_echo('Facebook Likes'),
+'href' => '/FBentities/viewFBlikes',
+'context' => 'friends'
+));
+
+
+
 elgg_unregister_menu_item('page', 'friends:view:collections');
 
 echo elgg_view_menu('page', array('sort_by' => 'name'));
