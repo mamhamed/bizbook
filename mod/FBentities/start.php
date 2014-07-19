@@ -7,7 +7,7 @@ function FBentities_init(){
 
 function FBentities_page_handler($segments){
   elgg_load_library('facebook');
-  if ($segments[0] == "likes"){
+  if ($segments[0] == "viewFBlikes"){
      include elgg_get_plugins_path() . 'FBentities/pages/FBentities/viewFBlikes.php';
   }
   else{
