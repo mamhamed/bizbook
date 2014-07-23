@@ -916,7 +916,7 @@ function validate_email_address($address) {
  * @return int|false The new user's GUID; false on failure
  * @throws RegistrationException
  */
-function register_user($username, $password, $name, $email,
+function register_user($username, $password, $name, $email, $profile_type,
 $allow_multiple_emails = false, $friend_guid = 0, $invitecode = '') {
 
 	// no need to trim password.
@@ -959,7 +959,11 @@ $allow_multiple_emails = false, $friend_guid = 0, $invitecode = '') {
 	access_show_hidden_entities($access_status);
 
 	// Create user
-	$user = new ElggUser();
+	if ($profile_type == 'business_profile_type') {
+		$user = new ElggBusiness();
+	} else {
+		$user = new ElggClient();
+	}
 	$user->username = $username;
 	$user->email = $email;
 	$user->name = $name;
@@ -1593,6 +1597,9 @@ function users_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'elgg_users_setup_entity_menu', 501);
 
 	elgg_register_event_handler('create', 'user', 'user_create_hook_add_site_relationship');
+
+	add_subtype("user", "client_subtype", "ElggClient");
+	add_subtype("user", "business_subtype", "ElggBusiness");
 }
 
 /**

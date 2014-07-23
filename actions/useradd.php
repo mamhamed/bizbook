@@ -33,7 +33,8 @@ if (strcmp($password, $password2) != 0) {
 
 // For now, just try and register the user
 try {
-	$guid = register_user($username, $password, $name, $email, TRUE);
+	$guid = register_user($username, $password, $name, $email, "client_profile_type", TRUE);
+	// TODO (shahdad): Investigate the ramifications of client profile type.
 
 	if ($guid) {
 		$new_user = get_entity($guid);
