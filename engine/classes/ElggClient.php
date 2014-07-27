@@ -8,7 +8,10 @@ class ElggClient extends ElggUser {
 	}
 	
 	function addFriend($friend_guid) {
-		sh();
-		error_log("addFriend() in ElggClient is called.");
+		$target_entity = get_entity($friend_guid);
+		if (!elgg_instanceof($target_entity, "user", "client_subtype")) {
+			return false;
+		}
+		return user_add_friend($this->getGUID(), $friend_guid);
 	}
 }

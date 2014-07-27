@@ -7,7 +7,7 @@ class ElggBusiness extends ElggUser {
 		$this->attributes['subtype'] = "business_subtype";
 	}
 	
-	/*function addFriend($friend_guid) {
-		error_log("addFriend() in ElggBusiness is called.");
-	}*/
+	function addFriend($friend_guid) {
+		return false;
+	}
 }
