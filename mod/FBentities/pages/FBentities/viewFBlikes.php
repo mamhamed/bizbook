@@ -12,41 +12,85 @@ $title = "Facebook Friends";
 //start building main colum of the page
 $content = elgg_view_title($title);
 
-   $fbData=array();
-   $facebook = facebookservice_api();
-   $fbuser = $facebook->getUser();
+$fbData=array();
+$facebook = facebookservice_api();
+$fbuser = $facebook->getUser();
 
-   if($fbuser){
-      try{
-         $friends = $facebook->api('/me/likes');
-      }
-      catch (FacebookApiException $e) {
-         $fbuser = null;
-	 echo "error in FB connection";
-      }
-   }
+$user = elgg_get_logged_in_user_entity();
+if ($user->fb_like_last_pull  < $user->prev_last_login){
+    if($fbuser){
+        try{
+            $likes = $facebook->api('/me/likes');
+        }
+        catch (FacebookApiException $e) {
+            $fbuser = null;
+            echo "error in FB connection";
+        }
+    }
+    $category_like = array();
+    foreach ($likes["data"] as $value) {
+        $pageid = $value["id"];
+        $pagename = $value["name"];
+        $imgsrc = 'https://graph.facebook.com/' . $value["id"] . '/picture';
 
-   $content .= '<table class="fixed"><col width="200px"/><tr>';
-   $i = 1;
-   foreach ($friends["data"] as $value) {
-      $content .= '<td>';
-      $content .= '<div class="pic">';
-      $content .= '<img height = 100 src="https://graph.facebook.com/' . $value["id"] . '/picture"/ >';
-      $content .= '</div>';
-      $content .= '<div class="picName">'.$value["name"].'</div>'; 
-      $content .= '<div>' . "(" . '<b><i>' . $value["category"] . '</i></b>' . ")" . '</div>';
-      $content .= '</td>';
-      if ($i % 4 == 0){
-         $content .= '</tr>';
-	 $content .= '<tr>';
-	 $i = 1;
-      }else{
-         $i = $i + 1;
-      }
-   }
-   $content .= '</tr></table>';
+        $category = $value["category"];
+
+        $obj = array('name' => $pagename, 'imgsrc' => $imgsrc, 'fbid' => $pageid);
+        if (!isset($category_like[$category])){
+            $category_like[$category] = array($obj);
+        }else{
+            array_push($category_like[$category], $obj);
+
+        }
+    }
+
+    //store the array as json in metadata
+    $user->fb_like_data = json_encode($category_like);
+
+    $user->fb_like_last_pull = $user->prev_last_login;
+}
+else
+{
+    //decode json
+    $category_like = json_decode($user->fb_like_data,true);
+}
 
 
+
+$categories_name = array_keys($category_like);
+foreach ($categories_name as $catname){
+    $cat_like = $category_like[$catname];
+
+    $content .= '<style> h3 { background-color: #b0c4de;}</style>';
+    $content .= '<div style="width:700px;height:20px;border:1px solid #000 ;">';
+    $content .= '<h3>' .  $catname . '</h3>';
+    $content .= '</div><br>';
+
+    $i = 1;
+    $content .= '<table class="fixed"><col width="150px"/><tr>';
+    foreach ($cat_like as $place){
+        $plcname = $place["name"];
+        $imgsrc = $place["imgsrc"];
+        $plcid = $place["id"];
+        $content .= '<td>';
+        $content .= '<div class="pic">';
+        $content .= '<img height = 100 src=' .$imgsrc .'>';
+        $content .= '</div>';
+        $content .= '<div class="picName">'.$plcname.'</div>';
+        $content .= '<div class="picName">'.$plcid.'</div>';
+
+        $content .= '</td>';
+        if ($i % 4 == 0){
+            $content .= '<col width="150px"/></tr>';
+            $content .= '<col width="150px"/><tr>';
+            $i = 1;
+        }else{
+            $i = $i + 1;
+        }
+    }
+    $content .= '</tr></table>';
+    $content .= '<br><br><br>';
+}
 
 // optionally, add the content for the sidebar
 $sidebar = "";
