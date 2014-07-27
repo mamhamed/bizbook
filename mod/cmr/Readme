@@ -1,0 +1,30 @@
+Features:
+1)Two-way friendship
+-Friendship is client-to-client
+-When a client adds another client as a friend, the other client is notified. If she approves, friendship is established. The other client may deny. In the meantime, the instigator might decide to revoke.
+-Dynamic hovering menus supported. For example, when a client is friends with another client, hovering over her avatar, gives the client “Remove friend” option. However, if they are not friends, hovering gives her “Add friend” option.
+2)c2b relationship
+-Very primitive form of client-to-business relationship.
+-Client instigates the relationship. She can revoke it at a later time. The business can drop it at any time.
+-Dynamic hovering menus supported. For example, when no c2b relationship exists, hovering over business’ avatar, gives the client “Select as a service provider” option. Else, it gives the client “Revoke as a service provider” option. Furthermore, if there is a c2b relationship, when the business hovers over the client’s avatar, “Drop as a client” appears in the menu.
+3)Follow relationship
+-Client to client or business relationship
+-Client instigates the relationship. She can revoke it at a later time. The target client/business can drop it at any time.
+-Dynamic hovering menus supported. For example, when no ‘follow’ relationship exists, hovering over a client/business avatar, gives  “Follow” option. If there is a ‘follow’ relationship, “Unfollow” option appears in the menu.
+4)New menu options for businesses
+-‘Followers, and ‘Clients’ have been added to topbar.
+-‘Friends’ has been removed from topbar.
+-‘Friends’, ‘Friends of’, ‘Friend collections’, and ‘Invite friends’ have been removed from sidebar.
+-We can easily change the above layout (in case you think some of the mentioned menu items are not needed).
+-Working navigational links from the added menu items to pages that render the corresponding info.
+5)New menu options for clients
+-‘Friend Requests’, ‘Service Providers’, ‘Following’, and ‘Followers’ have been added to topbar.
+-‘Friends of’ has been removed from sidebar.
+-‘Followers’, ‘Following’, ‘Service Providers’, and ‘Friend Requests have been added to sidebar.
+-We can easily change the above layout (in case you think some of the mentioned menu items are not needed).
+-Working navigational links from the added menu items to pages that render the corresponding info.
+6)New widgets
+-Businesses can add the following working widgets to their personal profile view: ‘Clients’, ‘Followers’. They no longer can have ‘Friends’ widget.
+-Clients can add the following working widgets to their personal profile view: ‘Service Providers’, ‘Following’, ‘Followers’.
+7)Activity tab filters
+-For clients, ‘Service Providers’ and ‘Following’ tabs have added to activity page.
