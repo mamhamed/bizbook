@@ -12,24 +12,27 @@ echo elgg_view_menu('extras', array(
 
 echo elgg_view('page/elements/owner_block', $vars);
 
+$user = elgg_get_logged_in_user_entity();
+$username = $user->username;
+
 elgg_register_menu_item('page', array(
 'name' => 'facebook_friends',
 'text' => elgg_echo('Facebook Friends'),
-'href' => '/FBentities',
+'href' => '/FBentities/'.$username . '/viewFBfriends',
 'context' => 'friends'
 ));
 
 elgg_register_menu_item('page', array(
 'name' => 'facebook_likes',
 'text' => elgg_echo('Facebook Likes'),
-'href' => '/FBentities/viewFBlikes',
+'href' => '/FBentities/' .$username . '/viewFBlikes',
 'context' => 'friends'
 ));
 
 elgg_register_menu_item('page', array(
     'name' => 'facebook_places',
     'text' => elgg_echo('Facebook places'),
-    'href' => '/FBentities/viewFBplaces',
+    'href' => '/FBentities/' . $username .'/viewFBplaces',
     'context' => 'friends'
 ));
 
