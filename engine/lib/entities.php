@@ -732,7 +732,14 @@ function entity_row_to_elggstar($row) {
 				$new_entity = new ElggObject($row);
 				break;
 			case 'user' :
-				$new_entity = new ElggUser($row);
+				$subtype_str = get_subtype_from_id($row->subtype);
+				if ($subtype_str == "client_subtype") {
+					$new_entity = new ElggClient($row);
+				} elseif (subtype_str == "business_subtype") {
+					$new_entity = new ElggBusiness($row);
+				} else {
+					$new_entity = new ElggUser($row);
+				}
 				break;
 			case 'group' :
 				$new_entity = new ElggGroup($row);

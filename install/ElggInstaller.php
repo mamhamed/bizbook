@@ -1534,7 +1534,8 @@ class ElggInstaller {
 					$submissionVars['username'],
 					$submissionVars['password1'],
 					$submissionVars['displayname'],
-					$submissionVars['email']
+					$submissionVars['email'],
+                                        "client_profile_type"
 					);
 		} catch (Exception $e) {
 			register_error($e->getMessage());

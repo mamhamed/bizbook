@@ -10,6 +10,7 @@ $password = $password2 = '';
 $username = get_input('u');
 $email = get_input('e');
 $name = get_input('n');
+$profile_type = get_input('p');
 
 if (elgg_is_sticky_form('register')) {
 	extract(elgg_get_sticky_values('register'));
@@ -60,6 +61,19 @@ if (elgg_is_sticky_form('register')) {
 	echo elgg_view('input/password', array(
 		'name' => 'password2',
 		'value' => $password2,
+	));
+	?>
+</div>
+
+<div>
+	<label><?php echo "Your profile type"; ?></label><br />
+	<?php
+        $options = array("client_profile_type" => "Client",
+		 	 "business_profile_type" => "Business");
+        echo elgg_view("input/dropdown", array(
+		'name' => 'profile_type',
+		'value' => $profile_type,
+		'options_values' => $options
 	));
 	?>
 </div>
