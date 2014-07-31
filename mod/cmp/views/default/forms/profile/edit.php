@@ -22,17 +22,20 @@ if (is_array($profile_fields) && count($profile_fields) > 0) {
 	foreach ($profile_fields as $shortname => $valtype) {
 		// For each user type, i.e., client or business, avoid setting certain profile fields.
 		if (elgg_instanceof($user, "user", "client_subtype") && (
-		 		$shortname == "description" ||
-				$shortname == "briefdescription" ||
-				$shortname == "interests" ||
-				$shortname == "skills" ||
-				$shortname == "website" ||
-				$shortname == "twitter"
+		 		$shortname == "admin_defined_profile_1"/*"Summary"*/ || 
+				$shortname == "admin_defined_profile_2"/*"Business Category"*/ ||
+				$shortname == "admin_defined_profile_3"/*"Business Sub-Category"*/ ||
+				$shortname == "admin_defined_profile_4"/*"Description"*/ ||
+				$shortname == "admin_defined_profile_6"/*"Address"*/ ||
+				$shortname == "admin_defined_profile_10"/*"Twitter Username"*/ ||
+				$shortname == "admin_defined_profile_11"/*"Website"*/
 		)) {
 			continue;
 		}
 		if (elgg_instanceof($user, "user", "business_subtype") && (
-				$shortname == "interests"
+				$shortname == "admin_defined_profile_12"/*"Age"*/ ||
+				$shortname == "admin_defined_profile_13"/*"Gender"*/ ||
+				$shortname == "admin_defined_profile_14"/*"Relationship Status"*/
 		)) {
 			continue;
 		}
