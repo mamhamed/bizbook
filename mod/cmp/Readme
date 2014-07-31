@@ -1,0 +1,23 @@
+This plugin will be home of all ChoiceMatch's profile-related developments.
+
+July 30, 2014
+First version only differentiates client and biz profile pages over default profile fields.
+For client, here are the profile fields that can be set:
+-My display name
+-Location
+-Contact email
+-Telephone
+-Mobile phone
+For biz, here are the profile fields that can be set:
+-My display name
+-About me
+-Brief description
+-Location
+-Skills
+-Contact email
+-Telephone
+-Mobile phone
+-website
+-Twitter username
+
+For each user type, only those profile fields set are shown on profile page.
