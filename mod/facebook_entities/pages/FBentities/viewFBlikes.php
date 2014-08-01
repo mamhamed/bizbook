@@ -7,7 +7,7 @@ elgg_set_context('friends');
 echo elgg_get_logged_in_user_entity();
 
 //set title
-$title = "Facebook Places";
+$title = "Facebook Friends";
 
 //start building main colum of the page
 $content = elgg_view_title($title);
@@ -17,10 +17,11 @@ $facebook = facebookservice_api();
 $fbuser = $facebook->getUser();
 
 $user = elgg_get_logged_in_user_entity();
-if ($user->fb_place_last_pull  < $user->prev_last_login){
+
+if (is_facebook_entities_update($user->fb_like_last_pull)){
     if($fbuser){
         try{
-            $places = $facebook->api('/me/tagged_places');;//, array('limit' => 3));
+            $likes = $facebook->api('/me/likes');
         }
         catch (FacebookApiException $e) {
             $fbuser = null;
@@ -28,34 +29,33 @@ if ($user->fb_place_last_pull  < $user->prev_last_login){
         }
     }
 
-
-    $category_place = get_facebook_places($places, $facebook);
+    $category_like = get_facebook_likes($likes);
 
     //store the array as json in metadata
-    $user->fb_place_data = json_encode($category_place);
-    //echo $user->fb_place_data;
-    $user->fb_place_last_pull = $user->prev_last_login;
+    $user->fb_like_data = json_encode($category_like);
+
+    $user->fb_like_last_pull = $user->prev_last_login;
 }
 else
-{    //decode json
-    //echo $user->fb_place_data;
-    $category_place = json_decode($user->fb_place_data,true);
+{
+    //decode json
+    $category_like = json_decode($user->fb_like_data,true);
 }
 
 
 
-$i = 1;
-$categories_name = array_keys($category_place);
+$categories_name = array_keys($category_like);
 foreach ($categories_name as $catname){
-    $cat_place = $category_place[$catname];
+    $cat_like = $category_like[$catname];
 
     $content .= '<style> h3 { background-color: #b0c4de;}</style>';
     $content .= '<div style="width:700px;height:20px;border:1px solid #000 ;">';
     $content .= '<h3>' .  $catname . '</h3>';
     $content .= '</div><br>';
 
+    $i = 1;
     $content .= '<table class="fixed"><col width="150px"/><tr>';
-    foreach ($cat_place as $place){
+    foreach ($cat_like as $place){
         $plcname = $place["name"];
         $imgsrc = $place["imgsrc"];
         $plcid = $place["id"];
@@ -63,7 +63,7 @@ foreach ($categories_name as $catname){
         $content .= '<div class="pic">';
         $content .= '<img height = 100 src=' .$imgsrc .'>';
         $content .= '</div>';
-        $content .= '<div class="picName">'.$plcname.'</div>';
+        $content .= '<div class="picName">'.'<a href='.$place["elggAddress"].'>'.$plcname.'</a></div>';
         $content .= '<div class="picName">'.$plcid.'</div>';
 
         $content .= '</td>';
@@ -77,11 +77,7 @@ foreach ($categories_name as $catname){
     }
     $content .= '</tr></table>';
     $content .= '<br><br><br>';
- }
-
-
-    //print_r($category_place);
-
+}
 
 // optionally, add the content for the sidebar
 $sidebar = "";
@@ -90,5 +86,5 @@ $sidebar = "";
 $body = elgg_view_layout('one_sidebar', array('content' => $content, 'sidebar' => $sidebar));
 
 //draw the page
+echo elgg_view_page($title, $body);
 
-echo elgg_view_page($title, $body); 

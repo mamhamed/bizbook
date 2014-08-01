@@ -1,0 +1,28 @@
+Category
+{
+    id = ""
+    type = "category"
+    source = ""
+    title = ""
+}
+
+CategoryAssessment
+{
+    id = ""
+    type = "assessment.category"
+    source = ""
+    title = ""
+    catgoryRefId = ""
+    user = ""
+    owner = ""
+}
+
+
+CategoryAssessment
+{
+    id = ""
+    type = "assessment.category"
+    source = ""
+    title = ""
+    catgoryRefId = ""
+}

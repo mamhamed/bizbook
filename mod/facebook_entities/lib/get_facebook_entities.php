@@ -71,3 +71,9 @@ function create_fb_biz_profile($pageid, $pagename){
 
     return $page_register_name;
 }
+
+
+function is_facebook_entities_update($facebook_entity){
+    $user = elgg_get_logged_in_user_entity();
+    return ($facebook_entity  < $user->prev_last_login);
+}
