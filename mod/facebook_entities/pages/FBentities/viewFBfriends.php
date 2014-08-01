@@ -1,4 +1,12 @@
 <?php
+/**
+ * User: hamed
+ * email: mhfirooz@gmail.com
+ * Date: 8/1/14
+ * Time: 12:01 AM
+ *
+ * This is used to pull the facebook friends
+ */
 //make sure only logged in users see this page
 gatekeeper();
 

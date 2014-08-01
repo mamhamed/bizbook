@@ -1,4 +1,13 @@
 <?php
+/**
+ * User: hamed
+ * email: mhfirooz@gmail.com
+ * Date: 8/1/14
+ * Time: 12:01 AM
+ *
+ * This is used to pull facebook likes
+ */
+
 //make sure only logged in users see this page
 gatekeeper();
 
@@ -18,6 +27,7 @@ $fbuser = $facebook->getUser();
 
 $user = elgg_get_logged_in_user_entity();
 
+//get facebook likes
 if (is_facebook_entities_update($user->fb_like_last_pull)){
     if($fbuser){
         try{
@@ -43,7 +53,7 @@ else
 }
 
 
-
+//create a table to show FB entities
 $categories_name = array_keys($category_like);
 foreach ($categories_name as $catname){
     $cat_like = $category_like[$catname];
