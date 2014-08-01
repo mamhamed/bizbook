@@ -29,25 +29,8 @@ if ($user->fb_place_last_pull  < $user->prev_last_login){
     }
 
 
-    $category_place = array();
-    foreach ($places["data"] as $value) {
-        $pageid = $value["place"]["id"];
-        $myplace = $facebook->api($pageid);
-        $ppic = $facebook->api($pageid.'/picture?redirect=false');
-        $imgsrc = $ppic["data"]["url"];
+    $category_place = get_facebook_places($places, $facebook);
 
-        $allcategory = $myplace["category_list"];
-        //add category
-        foreach ($allcategory as $categorya){
-            $category = $categorya["name"];
-            $obj = array('name' => $myplace["name"], 'imgsrc' => $imgsrc, 'fbid' => $myplace["id"]);
-            if (!isset($category_place[$category])){
-                $category_place[$category] = array($obj);
-            }else{
-                array_push($category_place[$category], $obj);
-            }
-        }
-    }
     //store the array as json in metadata
     $user->fb_place_data = json_encode($category_place);
     //echo $user->fb_place_data;

@@ -27,22 +27,8 @@ if ($user->fb_like_last_pull  < $user->prev_last_login){
             echo "error in FB connection";
         }
     }
-    $category_like = array();
-    foreach ($likes["data"] as $value) {
-        $pageid = $value["id"];
-        $pagename = $value["name"];
-        $imgsrc = 'https://graph.facebook.com/' . $value["id"] . '/picture';
 
-        $category = $value["category"];
-
-        $obj = array('name' => $pagename, 'imgsrc' => $imgsrc, 'fbid' => $pageid);
-        if (!isset($category_like[$category])){
-            $category_like[$category] = array($obj);
-        }else{
-            array_push($category_like[$category], $obj);
-
-        }
-    }
+    $category_like = get_facebook_likes($likes);
 
     //store the array as json in metadata
     $user->fb_like_data = json_encode($category_like);
@@ -76,7 +62,7 @@ foreach ($categories_name as $catname){
         $content .= '<div class="pic">';
         $content .= '<img height = 100 src=' .$imgsrc .'>';
         $content .= '</div>';
-        $content .= '<div class="picName">'.$plcname.'</div>';
+        $content .= '<div class="picName">'.'<a href='.$place["elggAddress"].'>'.$plcname.'</a></div>';
         $content .= '<div class="picName">'.$plcid.'</div>';
 
         $content .= '</td>';
@@ -100,4 +86,7 @@ $body = elgg_view_layout('one_sidebar', array('content' => $content, 'sidebar' =
 
 //draw the page
 
-echo elgg_view_page($title, $body); 
+
+echo elgg_view_page($title, $body);
+
+

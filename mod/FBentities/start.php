@@ -4,6 +4,10 @@ elgg_register_event_handler('init', 'system', 'FBentities_init');
 function FBentities_init(){
    elgg_register_page_handler('FBentities','FBentities_page_handler');
    elgg_load_library('facebook');
+
+    $lib = elgg_get_plugins_path() . "/FBentities/lib/get_facebook_entities.php";
+    elgg_register_library('get_facebook_entities', $lib);
+    elgg_load_library('get_facebook_entities');
 }
 
 function FBentities_page_handler($segments){
