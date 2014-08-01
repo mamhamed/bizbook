@@ -5,6 +5,7 @@
  * @uses $vars['sidebar'] Optional content that is displayed at the bottom of sidebar
  */
 
+
 echo elgg_view_menu('extras', array(
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz',
@@ -18,21 +19,21 @@ $username = $user->username;
 elgg_register_menu_item('page', array(
 'name' => 'facebook_friends',
 'text' => elgg_echo('Facebook Friends'),
-'href' => '/FBentities/'.$username . '/viewFBfriends',
+'href' => '/facebook_entities/'.$username . '/viewFBfriends',
 'context' => 'friends'
 ));
 
 elgg_register_menu_item('page', array(
 'name' => 'facebook_likes',
 'text' => elgg_echo('Facebook Likes'),
-'href' => '/FBentities/' .$username . '/viewFBlikes',
+'href' => '/facebook_entities/' .$username . '/viewFBlikes',
 'context' => 'friends'
 ));
 
 elgg_register_menu_item('page', array(
     'name' => 'facebook_places',
     'text' => elgg_echo('Facebook places'),
-    'href' => '/FBentities/' . $username .'/viewFBplaces',
+    'href' => '/facebook_entities/' . $username .'/viewFBplaces',
     'context' => 'friends'
 ));
 
