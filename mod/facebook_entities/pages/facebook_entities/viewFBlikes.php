@@ -1,4 +1,5 @@
 <?php
+E_DEPRECATED;
 /**
  * User: hamed
  * email: mhfirooz@gmail.com

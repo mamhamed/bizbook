@@ -11,14 +11,15 @@ function get_facebook_places($places, $facebook){
     foreach ($places["data"] as $value) {
         $pageid = $value["place"]["id"];
         $myplace = $facebook->api($pageid);
+        $pagename = $myplace["name"];
         $ppic = $facebook->api($pageid.'/picture?redirect=false');
         $imgsrc = $ppic["data"]["url"];
-
+        $page_register_name = create_fb_biz_profile($pageid, $pagename);
         $allcategory = $myplace["category_list"];
         //add category
         foreach ($allcategory as $categorya){
             $category = $categorya["name"];
-            $obj = array('name' => $myplace["name"], 'imgsrc' => $imgsrc, 'fbid' => $myplace["id"]);
+            $obj = array('name' => $pagename, 'imgsrc' => $imgsrc, 'fbid' => $pageid, 'elggAddress' => 'http://localhost/elgg/profile/'.$page_register_name);
             if (!isset($category_place[$category])){
                 $category_place[$category] = array($obj);
             }else{

@@ -24,6 +24,13 @@ elgg_register_menu_item('page', array(
 ));
 
 elgg_register_menu_item('page', array(
+    'name' => 'fb_top_proz',
+    'text' => elgg_echo('Facebook Proz'),
+    'href' => '/facebook_entities/'.$username . '/viewFBproz',
+    'context' => 'friends'
+));
+
+elgg_register_menu_item('page', array(
 'name' => 'facebook_likes',
 'text' => elgg_echo('Facebook Likes'),
 'href' => '/facebook_entities/' .$username . '/viewFBlikes',

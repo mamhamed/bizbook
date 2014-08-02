@@ -2,7 +2,10 @@
 elgg_register_event_handler('init', 'system', 'facebook_entities_init');
 
 function facebook_entities_init(){
-   elgg_register_page_handler('facebook_entities','facebook_entities_page_handler');
+    ini_set("log_errors", 1);
+    ini_set("error_log", "/tmp/facebook-php-error.log");
+
+    elgg_register_page_handler('facebook_entities','facebook_entities_page_handler');
    elgg_load_library('facebook');
 
     $lib = elgg_get_plugins_path() . "/facebook_entities/lib/get_facebook_entities.php";
@@ -20,6 +23,9 @@ function facebook_entities_page_handler($segments){
         }
         else if ($segments[1] == "viewFBplaces"){
             include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBPlaces.php';
+        }
+        else if ($segments[1] == "viewFBproz"){
+            include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBproz.php';
         }
         else{
             include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBfriends.php';
