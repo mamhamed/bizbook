@@ -2,8 +2,10 @@
 elgg_register_event_handler('init', 'system', 'facebook_entities_init');
 
 function facebook_entities_init(){
-    ini_set("log_errors", 1);
-    ini_set("error_log", "/tmp/facebook-php-error.log");
+
+    //uncomment for debuging
+    //ini_set("log_errors", 1);
+    //ini_set("error_log", "/tmp/facebook-php-error.log");
 
     elgg_register_page_handler('facebook_entities','facebook_entities_page_handler');
    elgg_load_library('facebook');
