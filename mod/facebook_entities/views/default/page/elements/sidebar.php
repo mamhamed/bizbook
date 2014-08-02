@@ -30,21 +30,6 @@ elgg_register_menu_item('page', array(
     'context' => 'friends'
 ));
 
-elgg_register_menu_item('page', array(
-'name' => 'facebook_likes',
-'text' => elgg_echo('Facebook Likes'),
-'href' => '/facebook_entities/' .$username . '/viewFBlikes',
-'context' => 'friends'
-));
-
-elgg_register_menu_item('page', array(
-    'name' => 'facebook_places',
-    'text' => elgg_echo('Facebook places'),
-    'href' => '/facebook_entities/' . $username .'/viewFBplaces',
-    'context' => 'friends'
-));
-
-
 elgg_unregister_menu_item('page', 'friends:view:collections');
 
 echo elgg_view_menu('page', array('sort_by' => 'name'));
