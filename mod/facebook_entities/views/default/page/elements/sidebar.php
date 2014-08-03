@@ -25,7 +25,7 @@ elgg_register_menu_item('page', array(
 
 elgg_register_menu_item('page', array(
     'name' => 'fb_top_proz',
-    'text' => elgg_echo('Facebook Proz'),
+    'text' => elgg_echo('Facebook Choices'),
     'href' => '/facebook_entities/'.$username . '/viewFBproz',
     'context' => 'friends'
 ));

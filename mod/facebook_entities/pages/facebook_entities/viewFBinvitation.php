@@ -28,7 +28,7 @@ echo <<< HTML
       //}
        FB.ui({
         method: '$method',
-        message: "hello",
+        message: "ChoiceMatch connects people with best matched service providers.",
         display: "iframe",
         access_token: '$fbaccess'
       }, function(response){
