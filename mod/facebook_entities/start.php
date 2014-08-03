@@ -28,6 +28,8 @@ function facebook_entities_page_handler($segments){
         }
         else if ($segments[1] == "viewFBproz"){
             include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBproz.php';
+        }else if ($segments[1] == "viewFBinvitation"){
+            include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBinvitation.php';
         }
         else{
             include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBfriends.php';

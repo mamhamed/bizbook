@@ -30,6 +30,15 @@ elgg_register_menu_item('page', array(
     'context' => 'friends'
 ));
 
+
+elgg_register_menu_item('page', array(
+    'name' => 'fb_invitation',
+    'text' => elgg_echo('Facebook Invitation'),
+    'href' => '/facebook_entities/'.$username . '/viewFBinvitation',
+    'context' => 'friends'
+));
+
+
 elgg_unregister_menu_item('page', 'friends:view:collections');
 
 echo elgg_view_menu('page', array('sort_by' => 'name'));
@@ -41,7 +50,7 @@ if (isset($vars['sidebar'])) {
 
 // @todo deprecated so remove in Elgg 2.0
 // optional second parameter of elgg_view_layout
-if (isset($vars['area2'])) {
+    if (isset($vars['area2'])) {
 	echo $vars['area2'];
 }
 
