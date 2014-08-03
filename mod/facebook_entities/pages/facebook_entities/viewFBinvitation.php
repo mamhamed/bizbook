@@ -51,3 +51,12 @@ echo <<< HTML
     </script>
 HTML;
 
+$sidebar = "";
+$content = "";
+
+//layout page
+$body = elgg_view_layout('one_sidebar', array('content' => $content, 'sidebar' => $sidebar));
+
+//draw the page
+echo elgg_view_page($title, $body);
+
