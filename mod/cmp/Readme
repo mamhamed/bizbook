@@ -1,0 +1,32 @@
+This plugin will be home of all ChoiceMatch's profile-related developments.
+
+July 30, 2014
+First version only differentiates client and biz profile pages over following plugin-defined profile fields.
+
+For client, here are the profile fields that can be set:
+-My display name
+-Location
+-Phone
+-Mobile
+-Email
+-Age
+-Gender
+-Relationship Status
+
+For biz, here are the profile fields that can be set:
+-My display name
+-Summary
+-Business Category
+-Business Sub-Category
+-Description
+-Location
+-Address
+-Phone
+-Mobile
+-Email
+-Twitter username
+-Website
+
+For each user type, only those profile fields set are shown on profile page.
+Currently, the profile fields are all texts. In the future, we might want to change some of them, such as
+'Business Category', to drop down.

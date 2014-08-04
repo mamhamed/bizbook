@@ -32,7 +32,7 @@ function cmr_init() {
 	// Overriding Elgg's default 'friends/remove' action: A client removes a two-way friendship with a client.
 	elgg_register_action("friends/remove", "$actions/friends/removefriend.php");
 	// A client approves a two-way friendship request previuosly submitted by another client.
-	elgg_register_action('fr_approve', "$actions/fr_drop.php");
+	elgg_register_action('fr_approve', "$actions/fr_approve.php");
 	// A client declines a request for a two-way friendship previuosly submitted by another client.
 	elgg_register_action('fr_decline', "$actions/fr_decline.php");
 	// A client revokes a request for a two-way friendship she previuosly submitted to another client.
