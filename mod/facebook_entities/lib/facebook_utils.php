@@ -60,7 +60,6 @@ function facebook_entities_login() {
 		);
 		$users = elgg_get_entities_from_plugin_user_settings($options);
 		if ($users) {
-            error_log("I am a user");
 			if (count($users) == 1) {
 				try {
 					login($users[0]);
@@ -80,7 +79,6 @@ function facebook_entities_login() {
 			}
 			forward();
 		} else {
-            error_log("update user");
 			$user = facebook_entities_create_update_user($fbData);
 			// login new user
 			try {

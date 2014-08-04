@@ -12,8 +12,8 @@ function facebook_entities_init(){
     elgg_register_library('facebook', "$base/vendors/facebook/facebook.php");
     elgg_load_library('facebook');
 
-    elgg_register_library('facebook_connect', "$base/lib/facebook_connect.php");
-    elgg_load_library('facebook_connect');
+    elgg_register_library('facebook_utils', "$base/lib/facebook_utils.php");
+    elgg_load_library('facebook_utils');
 
     elgg_register_library('get_facebook_entities', "$base/lib/get_facebook_entities.php");
     elgg_load_library('get_facebook_entities');
