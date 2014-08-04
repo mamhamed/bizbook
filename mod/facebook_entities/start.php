@@ -2,8 +2,10 @@
 elgg_register_event_handler('init', 'system', 'facebook_entities_init');
 
 function facebook_entities_init(){
-    ini_set("log_errors", 1);
-    ini_set("error_log", "/tmp/facebook-php-error.log");
+
+    //uncomment for debuging
+    //ini_set("log_errors", 1);
+    //ini_set("error_log", "/tmp/facebook-php-error.log");
 
     elgg_register_page_handler('facebook_entities','facebook_entities_page_handler');
    elgg_load_library('facebook');
@@ -26,6 +28,8 @@ function facebook_entities_page_handler($segments){
         }
         else if ($segments[1] == "viewFBproz"){
             include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBproz.php';
+        }else if ($segments[1] == "viewFBinvitation"){
+            include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBinvitation.php';
         }
         else{
             include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBfriends.php';

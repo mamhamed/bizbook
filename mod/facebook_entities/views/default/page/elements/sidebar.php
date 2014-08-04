@@ -25,22 +25,16 @@ elgg_register_menu_item('page', array(
 
 elgg_register_menu_item('page', array(
     'name' => 'fb_top_proz',
-    'text' => elgg_echo('Facebook Proz'),
+    'text' => elgg_echo('Facebook Choices'),
     'href' => '/facebook_entities/'.$username . '/viewFBproz',
     'context' => 'friends'
 ));
 
-elgg_register_menu_item('page', array(
-'name' => 'facebook_likes',
-'text' => elgg_echo('Facebook Likes'),
-'href' => '/facebook_entities/' .$username . '/viewFBlikes',
-'context' => 'friends'
-));
 
 elgg_register_menu_item('page', array(
-    'name' => 'facebook_places',
-    'text' => elgg_echo('Facebook places'),
-    'href' => '/facebook_entities/' . $username .'/viewFBplaces',
+    'name' => 'fb_invitation',
+    'text' => elgg_echo('Facebook Invitation'),
+    'href' => '/facebook_entities/'.$username . '/viewFBinvitation',
     'context' => 'friends'
 ));
 
@@ -56,7 +50,7 @@ if (isset($vars['sidebar'])) {
 
 // @todo deprecated so remove in Elgg 2.0
 // optional second parameter of elgg_view_layout
-if (isset($vars['area2'])) {
+    if (isset($vars['area2'])) {
 	echo $vars['area2'];
 }
 

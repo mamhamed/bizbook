@@ -72,6 +72,13 @@ else
 $i = 1;
 $categories_name = array_keys($fbcategories);
 foreach ($categories_name as $catname){
+    if (strpos($catname,'Restaurant') === false &&
+        strpos($catname,'Hotel') === false &&
+        strpos($catname,'Doctor') === false
+    ){
+        continue;
+    }
+
     $category = $fbcategories[$catname];
 
     $content .= '<style> h3 { background-color: #b0c4de;}</style>';
