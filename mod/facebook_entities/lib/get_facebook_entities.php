@@ -66,7 +66,7 @@ function create_fb_biz_profile($pageid, $pagename){
             $pageGUID = register_user($page_register_name, '1234567', $pagename, $pageid . '@facebook.com' , "business_profile_type");
             $user->addFriend($pageGUID);
             $page_profile_pic = 'https://graph.facebook.com/' . $pageid .'/picture?type=large';
-            facebook_connect_update_user_avatar($page_user, $page_profile_pic);
+            facebook_entities_update_user_avatar($page_user, $page_profile_pic);
         }
     }
 
