@@ -59,9 +59,10 @@ function get_facebook_likes($likes){
 
 function create_fb_biz_profile($pageid, $pagename){
     $user = elgg_get_logged_in_user_entity();
-    $page_register_name = str_replace(' ', '', $pagename);
+    $page_register_name = preg_replace('/\s+/', '', $pagename);//str_replace(' ', '', $pagename);
     if (ctype_alnum($page_register_name)){
         $page_user = get_user_by_username($page_register_name);
+        error_log($page_user->username);
         if ($page_user == null){
             $pageGUID = register_user($page_register_name, '1234567', $pagename, $pageid . '@facebook.com' , "business_profile_type");
             $user->addFriend($pageGUID);
