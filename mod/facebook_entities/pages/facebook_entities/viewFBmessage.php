@@ -11,7 +11,7 @@ $username = elgg_get_logged_in_user_entity()->username;
 $facebook = facebookservice_api();
 $fbuser = $facebook->getUser();
 $fbaccess =  $facebook->getAccessToken();
-$method = "apprequests";
+$method = "send";
 $appID = 903078693040885;
 
 echo <<< HTML
@@ -28,9 +28,11 @@ echo <<< HTML
       //}
        FB.ui({
         method: '$method',
-        message: "ChoiceMatch connects people with best matched service providers.",
+        //message: "ChoiceMatch connects people with best matched service providers.",
         display: "iframe",
-        access_token: '$fbaccess'
+        link: 'http://www.choixmatch.com/'
+        //link: 'http://localhost/'
+        //access_token: '$fbaccess'
       }, function(response){
             console.log(response);
             window.location = './viewFBfriends';

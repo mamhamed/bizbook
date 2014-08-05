@@ -57,10 +57,10 @@ $content = elgg_view_title($title);
 
 
 // optionally, add the content for the sidebar
-$sidebar = "";
+//$sidebar = "";
 
 //layout page
-$body = elgg_view_layout('one_sidebar', array('content' => $content, 'sidebar' => $sidebar));
+$body = elgg_view_layout('one_sidebar', array('content' => $content));//, 'sidebar' => $sidebar));
 
 //draw the page
 
