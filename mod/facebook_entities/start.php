@@ -4,8 +4,8 @@ elgg_register_event_handler('init', 'system', 'facebook_entities_init');
 function facebook_entities_init(){
 
     //uncomment for debuging
-    ini_set("log_errors", 1);
-    ini_set("error_log", "/tmp/facebook-php-error.log");
+    //ini_set("log_errors", 1);
+    //ini_set("error_log", "/tmp/facebook-php-error.log");
 
     $base = elgg_get_plugins_path() . 'facebook_entities';
 
