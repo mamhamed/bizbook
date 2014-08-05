@@ -5,14 +5,6 @@
  * @uses $vars['sidebar'] Optional content that is displayed at the bottom of sidebar
  */
 
-
-echo elgg_view_menu('extras', array(
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-));
-
-echo elgg_view('page/elements/owner_block', $vars);
-
 $user = elgg_get_logged_in_user_entity();
 $username = $user->username;
 
@@ -34,12 +26,20 @@ elgg_register_menu_item('page', array(
 elgg_register_menu_item('page', array(
     'name' => 'fb_invitation',
     'text' => elgg_echo('Facebook Invitation'),
-    'href' => '/facebook_entities/'.$username . '/viewFBinvitation',
+    'href' => '/facebook_entities/'.$username . '/viewFBmessage',
     'context' => 'friends'
 ));
 
 
 elgg_unregister_menu_item('page', 'friends:view:collections');
+
+
+echo elgg_view_menu('extras', array(
+    'sort_by' => 'priority',
+    'class' => 'elgg-menu-hz',
+));
+
+//echo elgg_view('page/elements/owner_block', $vars);
 
 echo elgg_view_menu('page', array('sort_by' => 'name'));
 	

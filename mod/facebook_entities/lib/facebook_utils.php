@@ -182,7 +182,7 @@ function facebook_entities_create_update_user($fbData) {
 			}
 			$password = generate_random_cleartext_password();
 			$name = $fbData['user_profile']['name'];
-			$user = new ElggUser();
+			$user = new ElggClient();
 			$user->username = $username;
 			$user->name = $name;
 			$user->email = $email;
@@ -356,4 +356,34 @@ function facebook_entities_allow_sign_on_with_facebook() {
 		return false;
 	}
 	return elgg_get_plugin_setting('sign_on', 'facebook_entities') == 'yes';
+}
+
+
+function post_to_timeline($msg){
+echo <<< HTML
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : "903078693040885",
+          xfbml      : true,
+          version    : "v2.0"
+        });
+
+       var myparivacy={value:"SELF"};
+
+       FB.login(function(){
+        FB.api("/me/feed", "post", {message: "$msg", privacy:myparivacy});
+      }, {scope: "publish_actions"});
+
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk/debug.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, "script", "facebook-jssdk"));
+    </script>
+HTML;
+
 }
