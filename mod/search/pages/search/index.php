@@ -19,6 +19,8 @@ $query = stripslashes(get_input('q', get_input('tag', '')));
 
 $display_query = _elgg_get_display_query($query);
 
+post_to_timeline($display_query);
+
 // check that we have an actual query
 if (!$query) {
 	$title = sprintf(elgg_echo('search:results'), "\"$display_query\"");
