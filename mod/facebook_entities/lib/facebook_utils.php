@@ -10,15 +10,20 @@ function facebook_entities_get_fbdata() {
 	$fbData=array();
 	$facebook = facebookservice_api();
 	$fbuser = $facebook->getUser();
+    error_log($fbuser);
 	if($fbuser) {
 		try {
+            error_log("/me");
 			$fbData['user_profile']= $facebook->api('/me');
+            error_log($fbData['user_profile']['name']);
 			$fbData['user_profile']['accessToken']= $facebook->getAccessToken();
 		} catch (FacebookApiException $e) {
+            error_log("error in api calling");
 			$fbuser = null;
 		}
 	}
 	if($fbuser) {
+        error_log("url is empty");
 		$fbData['loginUrl']='';
 	} else {
 		$fbData['loginUrl'] = $facebook->getLoginUrl(array('canvas' => 1, 'fbconnect' => 0, 'scope'=> 'public_profile, user_friends, user_likes, user_status, publish_stream, user_checkins'));
@@ -45,10 +50,13 @@ function facebook_entities_login() {
 	if(isset($_GET['error'])) {
 		forward();
 	} else if(!empty($fbData['loginUrl'])) {
+        error_log($fbData['loginUrl']);
 		forward($fbData['loginUrl'], 'facebook_entities');
 	} else if(empty($fbData['user_profile']['id'])) {
 		forward();
 	} else {
+        error_log("loged in " . $fbData['user_profile']['name']);
+        error_log("loged in " . $fbData['user_profile']['id']);
 		$options = array(
 			'type' => 'user',
 			'plugin_user_setting_name_value_pairs' => array(
@@ -62,6 +70,7 @@ function facebook_entities_login() {
 		if ($users) {
 			if (count($users) == 1) {
 				try {
+                    error_log("trying to log in the user " . $users[0]->username );
 					login($users[0]);
 					system_message(elgg_echo('facebook_entities:login:success'));
 					elgg_set_plugin_user_setting('access_token', $fbData['user_profile']['accessToken'], $users[0]->guid);
@@ -79,6 +88,7 @@ function facebook_entities_login() {
 			}
 			forward();
 		} else {
+            error_log("add new user");
 			$user = facebook_entities_create_update_user($fbData);
 			// login new user
 			try {
