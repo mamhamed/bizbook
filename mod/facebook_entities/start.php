@@ -25,18 +25,28 @@ function facebook_entities_init(){
     elgg_extend_view('login/extend', 'facebook_entities/login');
 }
 
-function facebook_entities_page_handler($segments){
+function facebook_entities_page_handler($page){
+    global $CONFIG;
+    if (!isset($page[0])) {
+        forward();
+    }
+    $_GET['session'] = $CONFIG->input['session'];
 
     $user = elgg_get_logged_in_user_entity();
 
-    switch ($segments[0]) {
+
+    switch ($page[0]) {
         case 'login':
             facebook_entities_login();
             break;
+        case 'addFacebook':
+            error_log("add account");
+            facebook_entities_add_account();
+            break;
         case $user->username:
-            if ($segments[1] == "viewFBproz"){
+            if ($page[1] == "viewFBproz"){
                 include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBproz.php';
-            }else if ($segments[1] == "viewFBmessage"){
+            }else if ($page[1] == "viewFBmessage"){
                 include elgg_get_plugins_path() . 'facebook_entities/pages/facebook_entities/viewFBmessage.php';
             }
             else{
@@ -52,7 +62,7 @@ function facebook_entities_page_handler($segments){
 
 
 /**
- * Send password for new user who is registered using facebook connect
+ * Send password for new user who is registered using facebook
  *
  * @param $email
  * @param $name
@@ -81,7 +91,7 @@ function send_user_password_mail($email, $name, $username, $password) {
         )
     );
 
-    $subject = elgg_echo('facebook_connect:email:subject', array($name));
+    $subject = elgg_echo('facebook_entities:email:subject', array($name));
 
     // create the from address
     $site = get_entity($site->guid);
