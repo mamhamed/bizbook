@@ -39,8 +39,10 @@ function facebook_entities_page_handler($page){
         case 'login':
             facebook_entities_login();
             break;
+        case 'revoke':
+            facebook_entities_revoke();
+            break;
         case 'addFacebook':
-            error_log("add account");
             facebook_entities_add_account();
             break;
         case $user->username:
