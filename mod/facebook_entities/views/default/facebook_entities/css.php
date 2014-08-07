@@ -4,7 +4,7 @@
  */
 ?>
 
-#facebook_connect_site_settings .text_input 
+#facebook_entities_site_settings .text_input
 {
 	width: 350px;
 }
