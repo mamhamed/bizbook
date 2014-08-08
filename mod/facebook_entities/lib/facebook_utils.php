@@ -26,7 +26,7 @@ function facebook_entities_get_fbdata() {
         error_log("url is empty");
 		$fbData['loginUrl']='';
 	} else {
-		$fbData['loginUrl'] = $facebook->getLoginUrl(array('canvas' => 1, 'fbconnect' => 0, 'scope'=> 'public_profile, user_friends, user_likes, user_status, publish_stream, user_checkins'));
+		$fbData['loginUrl'] = $facebook->getLoginUrl(array('canvas' => 1, 'fbconnect' => 0, 'scope'=> 'public_profile, email, user_friends, user_likes, user_status, publish_stream, user_checkins'));
 	}
 	return $fbData;
 }
@@ -153,7 +153,7 @@ function facebook_entities_create_update_user($fbData) {
 	elgg_load_library('facebook');
 	$facebook = facebookservice_api();
 	// need facebook account credentials
-	// backward compatibility for stalled-development FBConnect plugin
+	// backward compatibility for stalled-development FB plugin
 	$user = FALSE;
 	$facebook_users = elgg_get_entities_from_metadata(array(
 							'type' => 'user',

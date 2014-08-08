@@ -74,7 +74,14 @@ $categories_name = array_keys($fbcategories);
 foreach ($categories_name as $catname){
     if (strpos($catname,'Restaurant') === false &&
         strpos($catname,'Hotel') === false &&
-        strpos($catname,'Doctor') === false
+        strpos($catname,'Doctor') === false &&
+        strpos($catname,'Bar') === false &&
+        strpos($catname,'Club') === false &&
+        strpos($catname,'Lawyer') === false &&
+        strpos($catname,'Pet') === false &&
+        strpos($catname,'Real') === false &&
+        strpos($catname,'Personal Care') === false &&
+        strpos($catname,'Home') === false
     ){
         continue;
     }
