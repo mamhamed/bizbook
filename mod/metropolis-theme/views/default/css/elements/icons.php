@@ -337,9 +337,9 @@
 .elgg-icon-settings-alt {
   background-position: -408px 0;
 }
-.elgg-menu-topbar .elgg-icon-settings {
+/*.elgg-menu-topbar .elgg-icon-settings {
 	display: none;
-}
+}*/
 .elgg-icon-settings {
 	/*display: none;*/
   background-position: -432px 0;
@@ -509,4 +509,21 @@
 .elgg-avatar-large > a > img {
 	width: 200px;
 	height: 200px;
+}
+
+/*
+Added by ChoiceMatch. Icons already exist but are not named.
+*/
+.elgg-icon-many-users {
+  width: 24px;
+  background-position: -288px -144px;
+}
+.elgg-icon-long-right-arrow {
+  background-position: -264px -96px;
+}
+.elgg-icon-long-left-arrow {
+  background-position: -240px -96px;
+}
+.elgg-icon-edit {
+  background-position: 0px -72px;
 }
