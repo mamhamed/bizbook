@@ -71,7 +71,11 @@ function metropolis_theme_init() {
 	elgg_register_action("metropolis-theme/admin/social", "$action_path/settings.php", 'admin');
 	elgg_extend_view('js/admin', 'metropolis-theme/themesettings');
 
-	elgg_register_event_handler('pagesetup', 'system', 'metropolis_theme_pagesetup', 1000);
+	// ChoiceMatch change.
+	// CMR pagesetup must take place after that of Metropolis so that menu
+	// adjustements of CMR override those of Metropolis. Decrease the priority
+	// to make this happen.
+	elgg_register_event_handler('pagesetup', 'system', 'metropolis_theme_pagesetup', 900);
 	elgg_register_admin_menu_item('configure', 'metropolis-theme', 'settings');
 	elgg_register_plugin_hook_handler('entity:icon:url', 'user', 'juipo_icon_url_handler');
 	elgg_register_plugin_hook_handler('entity:icon:url', 'group', 'juipo_groups_icon_url_handler');	
@@ -220,6 +224,13 @@ function metropolis_theme_pagesetup() {
 			'href' => "/friends/" . elgg_get_logged_in_user_entity()->username,
 			'priority' => 150,
 		));
+		// ChoiceMatch change.
+		// This is a bug in Metropolis. Before registering a standard menu, it
+		// must be unregistered. Without this, there will be two menu items in
+		// the list. As a result, if another plugin attempts to unregister the menu
+		// item, only one will be deleted from the list and unwanted results will
+		// be observed.
+		elgg_unregister_menu_item('topbar', 'friends');
 		elgg_register_menu_item('topbar', array(
 			'name' => 'friends',
 			'title' => elgg_echo('friends'),
