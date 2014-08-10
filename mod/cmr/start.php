@@ -5,7 +5,7 @@ require_once(dirname(__FILE__) . "/lib/hooks.php");
 
 // Default event handlers
 elgg_register_event_handler('init', 'system', 'cmr_init');
-elgg_register_event_handler("pagesetup", "system", "cmr_pagesetup");
+elgg_register_event_handler("pagesetup", "system", "cmr_pagesetup", 910);
 
 function cmr_init() {
 	// Extend css
@@ -157,6 +157,7 @@ function cmr_pagesetup(){
 				"name" => "followers",
 				"text" => elgg_echo("cmr:followers:menu"),
 				"href" => "followers/" . $page_owner->username,
+				"title" => elgg_echo("cmr:followers:menu"),
 				"priority" => 700,
 		);
 		elgg_register_menu_item("topbar", $menu_item);
@@ -165,6 +166,7 @@ function cmr_pagesetup(){
 				"name" => "clients",
 				"text" => elgg_echo("cmr:clients:menu"),
 				"href" => "clients/" . $page_owner->username,
+				"title" => elgg_echo("cmr:clients:menu"),
 				"priority" => 700,
 		);
 		elgg_register_menu_item("topbar", $menu_item);
@@ -204,6 +206,7 @@ function cmr_pagesetup(){
 				"name" => "service_providers",
 				"text" => elgg_echo("cmr:service_providers:menu"),
 				"href" => "service_providers/" . $page_owner->username,
+				"title" => elgg_echo("cmr:service_providers:menu"),
 				"priority" => 700,
 		));
 
@@ -211,6 +214,7 @@ function cmr_pagesetup(){
 				"name" => "following",
 				"text" => elgg_echo("cmr:following:menu"),
 				"href" => "following/" . $page_owner->username,
+				"title" => elgg_echo("cmr:following:menu"),
 				"priority" => 710,
 		));
 
@@ -218,6 +222,7 @@ function cmr_pagesetup(){
 				"name" => "followers",
 				"text" => elgg_echo("cmr:followers:menu"),
 				"href" => "followers/" . $page_owner->username,
+				"title" => elgg_echo("cmr:followers:menu"),
 				"priority" => 710,
 		));
 		
