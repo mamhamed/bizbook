@@ -1,0 +1,3 @@
+This plugin applies some adjustments on menu items when Metropolis Theme has been activated.
+-All text-style menu items in topbar are replaced with icons.
+-Proper items are added to ‘Account’ menu for Businesses and Clients. Some unnecessary items (e.g., Edit Avatar, and Notifications) are removed.
