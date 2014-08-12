@@ -54,11 +54,11 @@ function cmr_user_hover_menu($hook, $type, $return, $params) {
 				if($item->getName() == "add_friend") {
 					if (check_entity_relationship($user->getGUID(), 'c2b', $target_user->guid)) {
 						$item->setText(elgg_echo("cmr:c2b_revoke:user"));
-						$item->setHref("action/c2b_revoke?object_guid=$target_user->guid");
+						$item->setHref(elgg_add_action_tokens_to_url("action/c2b_revoke?object_guid=$target_user->guid"));
 						break;
 					} else {
 						$item->setText(elgg_echo("cmr:c2b_establish:user"));
-						$item->setHref("action/c2b_establish?object_guid=$target_user->guid");
+						$item->setHref(elgg_add_action_tokens_to_url("action/c2b_establish?object_guid=$target_user->guid"));
 						break;
 					}
 				}
